@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4ED">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#F7F4ED">
+<meta name="color-scheme" content="light">
+<title>FameConnect — Votre bulle de rencontres et d'expériences</title>
+<meta name="description" content="FameConnect — l'application d'expériences 100 % entre femmes, en cours de développement. Inscrivez-vous en avant-première. Lancement en PACA.">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/jpeg" href="assets/logo-fameco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F4ED;
+    --paper:#FEFDF9;
+    --wine:#6E1728;
+    --wine-dark:#5A1220;
+    --wine-deep:#53242A;
+    --ink:#281D19;
+    --ink-soft:#4A3B37;
+    --line:#E4DCD2;
+    --rose:#E9C9C1;
+    --rose-soft:#F2DED8;
+    --green:#426447;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.12}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .rule{width:54px;height:2px;background:var(--ink);opacity:.55;margin-bottom:26px}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,244,237,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+  .nav-in>.brand{flex-shrink:0;margin-right:8px}
+  .nav-in>.nav-links{flex-shrink:1;min-width:0;gap:22px}
+  .brand-txt{display:inline}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em;white-space:nowrap;text-decoration:none}
+  .brand img{height:38px;width:auto;max-width:46px;object-fit:contain;border-radius:0;flex-shrink:0;display:block}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{
+    font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);transition:color .18s;
+    white-space:nowrap;            /* jamais de titre coupe sur deux lignes */
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;
+    border:1px solid transparent;transition:transform .15s,background .18s,color .18s;
+    white-space:nowrap;
+  }
+  .btn-wine{background:var(--wine);color:#fff;padding:14px 30px}
+  .btn-rose{background:var(--rose);color:#5A1220;padding:15px 30px}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);padding:15px 30px}
+  .btn-dark{background:var(--wine-deep);color:#fff;padding:16px 34px}
+  .nav-cta{padding:12px 24px;font-size:14px}
+  .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{background:linear-gradient(100deg,#FEFDF9 0%,#FBF7F2 55%,#F6E7E0 100%);overflow:hidden}
+  .hero-in{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+    padding:84px 0 96px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--rose-soft);color:var(--wine);
+    font-size:12.5px;font-weight:700;letter-spacing:.06em;
+    padding:9px 16px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--wine);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(34px,4.6vw,54px);font-weight:600;letter-spacing:-.025em}
+  .hero .sub{margin-top:22px;font-size:17px;color:var(--ink-soft);max-width:46ch;line-height:1.6}
+  .hero .sub strong{color:var(--wine);font-weight:700}
+  .hero-btns{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+
+  /* ---------- PHONE MOCKUP ---------- */
+  .phone-wrap{position:relative;max-width:348px;margin:0 auto;width:100%}
+  .pill-float{
+    position:absolute;z-index:3;display:flex;align-items:center;gap:9px;
+    border-radius:13px;padding:11px 15px;font-size:13px;font-weight:700;
+    box-shadow:0 14px 30px -12px rgba(40,29,25,.4);white-space:nowrap;
+  }
+  .pill-checkin{top:-14px;left:-46px;background:#fff;color:var(--wine)}
+  .pill-checkin .gdot{width:9px;height:9px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  .pill-sororite{top:42%;right:-40px;background:var(--wine);color:#fff}
+  .pill-sororite svg{width:15px;height:15px;flex:0 0 15px}
+  .phone{
+    background:var(--ink);border-radius:46px;padding:11px;
+    box-shadow:0 44px 80px -32px rgba(110,23,40,.55);
+  }
+  .screen{background:var(--paper);border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
+  .statusbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:13px 20px 4px;font-size:11.5px;font-weight:600;color:#6B5D57;
+  }
+  .statusbar .sic{display:flex;align-items:center;gap:5px}
+  .statusbar svg{width:13px;height:13px}
+  .appbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:11px}
+  .apphead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .apphead .geo{
+    font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wine);
+  }
+  .apphead h4{margin:3px 0 0;font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .searchic{
+    flex:0 0 32px;width:32px;height:32px;border-radius:50%;background:var(--cream);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  }
+  .searchic svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2}
+  .mini{
+    background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;
+    box-shadow:0 6px 16px -10px rgba(40,29,25,.25);
+  }
+  .mini .ph{position:relative}
+  .mini .ph img{width:100%;height:104px;object-fit:cover}
+  .mini.tall .ph img{height:126px}
+  .mini .etag{
+    position:absolute;top:8px;left:8px;background:rgba(254,253,249,.93);
+    font-size:9.5px;font-weight:700;color:var(--ink);
+    padding:4px 9px;border-radius:999px;
+  }
+  .mini .price{
+    position:absolute;bottom:8px;right:8px;background:var(--wine);color:#fff;
+    font-size:11px;font-weight:800;padding:4px 10px;border-radius:8px;
+  }
+  .mini .bd{padding:9px 11px 10px}
+  .mini .t1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .mini .t1 b{font-size:12.5px;font-weight:800;letter-spacing:-.01em}
+  .mini .t1 .left{font-size:9.5px;font-weight:700;color:var(--green);white-space:nowrap}
+  .mini .loc{
+    display:flex;align-items:center;gap:5px;margin-top:4px;
+    font-size:10.5px;color:var(--ink-soft);
+  }
+  .mini .loc svg{width:10px;height:10px;stroke:var(--wine);fill:none;stroke-width:2;flex:0 0 10px}
+  .dock{
+    margin-top:2px;height:42px;border-radius:13px;background:var(--cream);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:space-around;
+  }
+  .dock svg{width:18px;height:18px;stroke:#8A7C76;fill:none;stroke-width:1.8}
+  .dock svg.on{stroke:var(--wine)}
+
+  /* ---------- TRANSITION ---------- */
+  .transition{background:var(--paper);text-align:center;padding:74px 0 78px}
+  .transition .k{font-size:20px;font-weight:600;color:var(--ink)}
+  .transition .v{margin-top:12px;font-size:15px;color:#8A7C76}
+
+  /* ---------- CONCEPT ---------- */
+  .concept{background:var(--cream);padding:88px 0}
+  .concept h2{font-size:clamp(26px,3.2vw,36px);font-weight:600}
+  .concept .lead{margin-top:20px;font-size:16px;color:var(--ink-soft);max-width:62ch;line-height:1.65}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:56px}
+  .col .ic{
+    width:44px;height:44px;border-radius:50%;background:var(--rose-soft);
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .col .ic svg{width:20px;height:20px;stroke:var(--wine);fill:none;stroke-width:1.7}
+  .col h3{font-size:17px;font-weight:600}
+  .col p{margin-top:10px;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+  /* ---------- EVENTS ---------- */
+  .events{background:var(--paper);padding:96px 0;border-top:1px solid var(--line)}
+  .events-head{display:flex;justify-content:space-between;align-items:flex-end;gap:34px;flex-wrap:wrap}
+  .events h2{font-size:clamp(26px,3.2vw,36px);font-weight:600;max-width:20ch}
+  .events .lead{margin-top:18px;font-size:15.5px;color:var(--ink-soft);max-width:56ch;line-height:1.6}
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px}
+  .ev{
+    background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 10px 30px -22px rgba(40,29,25,.35);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .ev .ph{position:relative}
+  .ev .ph img{width:100%;aspect-ratio:4/2.55;object-fit:cover}
+  .ev .etag{
+    position:absolute;top:14px;left:14px;background:rgba(254,253,249,.94);
+    font-size:11px;font-weight:700;color:var(--ink);padding:6px 12px;border-radius:999px;
+  }
+  .ev .price{
+    position:absolute;bottom:14px;right:14px;background:var(--wine);color:#fff;
+    font-size:15px;font-weight:800;padding:7px 14px;border-radius:11px;
+    box-shadow:0 8px 18px -8px rgba(110,23,40,.7);
+  }
+  .ev .bd{padding:24px 24px 22px;display:flex;flex-direction:column;flex:1}
+  .ev .loc{
+    display:flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:600;color:var(--ink-soft);
+  }
+  .ev .loc svg{width:14px;height:14px;stroke:var(--wine);fill:none;stroke-width:1.8;flex:0 0 14px}
+  .ev h3{margin-top:11px;font-size:18.5px;font-weight:700;letter-spacing:-.015em;line-height:1.25}
+  .ev .ds{margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.6;flex:1}
+  .ev .ft{
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .ev .soon{font-size:12px;color:#9A8A82;font-weight:600}
+  .ev .go{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--wine);color:#fff;font-size:13.5px;font-weight:700;
+    padding:10px 18px;border-radius:999px;transition:background .18s;
+  }
+  .ev .go svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.2}
+  .events .disclaimer{
+    margin-top:30px;text-align:center;font-size:13px;color:#9A8A82;font-style:italic;
+  }
+
+  /* ---------- CREATE (chips) ---------- */
+  .create{background:var(--cream);padding:96px 0}
+  .create h2{font-size:clamp(24px,3vw,32px);font-weight:600}
+  .create .lead{margin-top:16px;font-size:15.5px;color:var(--ink-soft);max-width:66ch;line-height:1.6}
+  .chips{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+  .chip{
+    background:var(--paper);border:1px solid var(--ink);border-radius:14px;
+    padding:20px 24px;font-size:15.5px;font-weight:600;color:var(--ink);
+    min-width:170px;transition:border-color .18s,transform .15s;
+  }
+  .create .note{margin-top:30px;font-size:15px;color:var(--ink-soft)}
+  .create .btn{margin-top:22px}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--cream);padding:0 0 100px;border-top:1px solid var(--line)}
+  .problem-in{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-top:88px}
+  .problem h2{font-size:clamp(24px,3vw,32px);font-weight:600;max-width:18ch}
+  .pains{display:flex;flex-direction:column;gap:26px}
+  .pain{display:flex;gap:16px;align-items:flex-start}
+  .pain .x{
+    flex:0 0 26px;width:26px;height:26px;border-radius:50%;border:1.4px solid var(--rose);
+    color:#B98A80;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px;
+  }
+  .pain p{font-size:15.5px;color:var(--ink-soft);line-height:1.55}
+  .problem .close-line{margin-top:34px;font-size:15px;color:var(--wine);font-weight:600;grid-column:2}
+
+  /* ---------- PROFILES ---------- */
+  .profile{background:var(--paper);padding:96px 0}
+  .profile.alt{background:var(--cream)}
+  .profile-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .profile.rev .profile-media{order:2}
+  .profile-media img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:16px}
+  .eyebrow{
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--wine);
+    background:var(--rose-soft);padding:7px 15px;border-radius:999px;
+  }
+  .profile h2{margin-top:22px;font-size:clamp(24px,3vw,32px);font-weight:600;max-width:18ch}
+  .ticks{margin-top:28px;display:flex;flex-direction:column;gap:16px}
+  .tick{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--ink-soft)}
+  .tick svg{flex:0 0 20px;width:20px;height:20px;margin-top:2px}
+  .profile .btn{margin-top:32px}
+
+  /* ---------- CATEGORIES ---------- */
+  .cats{background:var(--paper);padding:96px 0}
+  .cats h2{font-size:clamp(26px,3.2vw,36px);font-weight:600;max-width:22ch}
+  .cats .lead{margin-top:18px;font-size:15.5px;color:var(--ink-soft)}
+  .grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .cat{
+    position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/2.6;
+    display:flex;align-items:flex-end;
+  }
+  .cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .cat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,10,14,.62),rgba(30,10,14,.05))}
+  .cat span{position:relative;z-index:2;color:#fff;font-weight:600;font-size:16px;padding:20px 22px}
+
+  /* ---------- WAITLIST BAND ---------- */
+  .band{background:var(--wine);color:#fff;padding:88px 0;text-align:center}
+  .band h2{font-size:clamp(26px,3.4vw,38px);font-weight:600}
+  .band .lead{margin:20px auto 0;max-width:70ch;font-size:16px;color:rgba(255,255,255,.86);line-height:1.65}
+  .band .btn{margin-top:36px}
+  .band .btn-cream{background:var(--cream);color:var(--wine);padding:16px 34px}
+  .band-items{display:flex;justify-content:center;gap:38px;margin-top:42px;flex-wrap:wrap}
+  .band-items div{display:flex;align-items:center;gap:10px;font-size:14.5px;color:rgba(255,255,255,.92)}
+  .band-items svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.6}
+
+  /* ---------- FORM ---------- */
+  .form-sec{background:var(--paper);padding:96px 0;text-align:center}
+  .form-sec h2{font-size:clamp(26px,3.2vw,36px);font-weight:600}
+  .form-sec .lead{margin:18px auto 0;max-width:72ch;font-size:15.5px;color:var(--ink-soft);line-height:1.6}
+  form{max-width:760px;margin:46px auto 0;text-align:left}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}
+  .field label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:var(--ink)}
+  .field input,.field select{
+    width:100%;background:var(--cream);border:1px solid var(--line);border-radius:10px;
+    padding:15px 16px;font-size:16px;font-family:inherit;color:var(--ink);outline:none;
+    transition:border-color .18s,background .18s;
+    -webkit-appearance:none;appearance:none;   /* iOS ne restyle plus les selects */
+  }
+  .field select{
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E1728' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;background-size:18px;
+    padding-right:44px;
+  }
+  .field input:focus,.field select:focus{border-color:var(--wine);background:#fff}
+  .field input::placeholder{color:#A9998F}
+  .field .hint{font-size:12.5px;color:#9A8A82;margin-top:7px}
+  .form-note{margin-top:22px;font-size:13px;color:#9A8A82;text-align:center}
+  .form-btn{width:100%;margin-top:12px}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{background:var(--cream);padding:90px 0;text-align:center;border-top:1px solid var(--line)}
+  .final h2{font-size:clamp(24px,3vw,32px);font-weight:600}
+  .final .btns{display:flex;gap:16px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+
+  /* ---------- SOCIAL / QR ---------- */
+  .social{background:var(--paper);padding:78px 0;text-align:center;border-top:1px solid var(--line)}
+  .social h2{font-size:clamp(22px,2.6vw,28px);font-weight:600}
+  .social p{margin-top:12px;font-size:15px;color:var(--ink-soft)}
+  .qrbox{margin-top:28px;display:inline-flex;flex-direction:column;align-items:center;gap:14px}
+  .qrbox img{width:168px;height:168px;background:#fff;padding:12px;border:1px solid var(--line);border-radius:14px}
+  .qrbox .handle{font-weight:700;font-size:17px;color:var(--wine)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--cream);padding:56px 0 34px;border-top:1px solid var(--line)}
+  .foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .foot .fbrand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;letter-spacing:-.03em}
+  .foot .fbrand img{height:40px;width:auto;border-radius:9px}
+  .foot .fcol h4{margin:0 0 14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#9A8A82}
+  .foot .fcol a,.foot .fcol p{display:block;font-size:14px;color:var(--ink-soft);margin-bottom:9px}
+  .legal{margin-top:38px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:#9A8A82}
+
+  @media (max-width:1100px){
+    .pill-checkin{left:-8px}
+    .pill-sororite{right:-10px}
+  }
+  @media (max-width:900px){
+    .hero-in,.problem-in,.profile-in{grid-template-columns:1fr;gap:38px}
+    .profile.rev .profile-media{order:0}
+    .cols3,.ev-grid{grid-template-columns:1fr}
+    .grid9{grid-template-columns:1fr 1fr}
+    .fgrid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .burger{display:block}
+    .nav-in{gap:12px;height:68px}
+    .nav-cta{padding:10px 16px;font-size:12.5px}
+    .brand{font-size:17px;gap:8px}
+    .brand img{height:30px;width:30px}
+    .problem .close-line{grid-column:1}
+    .wrap{padding:0 20px}
+    .pill-float{display:none}
+    .hero-in{padding:64px 0 76px}
+  }
+  @media (max-width:560px){
+    .brand-txt{display:none}
+    .nav-in{height:64px}
+    .nav-cta{padding:9px 14px;font-size:12px}
+    .wrap{padding:0 16px}
+  }
+
+  /* ---------- BASELINE MOBILE (skill mobile-native) ---------- */
+  html{
+    -webkit-tap-highlight-color:transparent;   /* pas de flash gris au tap */
+    -webkit-text-size-adjust:100%;             /* pas d'inflation de police en paysage */
+    overscroll-behavior:none;                  /* pas de pull-to-refresh */
+    scroll-behavior:smooth;
+  }
+  body{overscroll-behavior:none}
+
+  /* feedback au PRESS, pas au release */
+  button,a,[role="button"]{
+    touch-action:manipulation;
+    -webkit-user-select:none;user-select:none;
+    -webkit-touch-callout:none;
+  }
+  .btn:active{transform:translateY(1px) scale(.985);transition-duration:60ms}
+  .btn-wine:active{background:var(--wine-dark)}
+  .btn-rose:active{background:#E0BAB0}
+  .btn-dark:active{background:#3E1A1F}
+  .chip:active{border-color:var(--wine)}
+  .ev .go:active{background:var(--wine-dark)}
+
+  /* zones sures (encoche / indicateur home) */
+  header.nav{padding-top:env(safe-area-inset-top,0px)}
+  footer.foot{padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px))}
+
+  /* ---------- HOVER : uniquement souris (skill mobile-native §1) ---------- */
+  @media (hover: hover) and (pointer: fine){
+    .nav-links a:hover{color:var(--wine)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-wine:hover{background:var(--wine-dark)}
+    .btn-rose:hover{background:#E0BAB0}
+    .btn-ghost:hover{border-color:var(--ink)}
+    .btn-dark:hover{background:#3E1A1F}
+    .ev:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(110,23,40,.4)}
+    .ev .go:hover{background:var(--wine-dark)}
+    .chip:hover{border-color:var(--wine);transform:translateY(-2px)}
+    .cat:hover img{transform:scale(1.05)}
+    .band .btn-cream:hover{background:#fff}
+    .foot .fcol a:hover{color:var(--wine)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><img src="assets/logo-fameco.png" alt="Logo FameConnect"><span class="brand-txt">FameConnect</span></a>
+    <nav class="nav-links">
+      <a href="#le-concept">Le concept</a>
+      <a href="#evenements">Événements</a>
+      <a href="#professionnelles">Professionnelles</a>
+      <a href="#participantes">Participantes</a>
+      <a href="#creer">Créer un événement</a>
+      <a href="#experiences">Expériences</a>
+    </nav>
+    <a class="btn btn-wine nav-cta" href="#liste">Rejoindre la liste</a>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-in">
+    <div>
+      <span class="hero-eyebrow"><span class="dot"></span>Application en cours de développement — inscriptions en avant-première</span>
+      <h1>Ateliers, expériences, événements près de chez vous, réservez en quelques clics ou créez le vôtre.</h1>
+      <p class="sub">Découvrez des expériences pensées par et pour les femmes.</p>
+      <div class="hero-btns">
+        <a class="btn btn-rose" href="#liste">Rejoindre la liste d'attente</a>
+        <a class="btn btn-ghost" href="#le-concept">Découvrir FameConnect</a>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="pill-float pill-checkin"><span class="gdot"></span>Check-in QR instantané</div>
+      <div class="pill-float pill-sororite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M9 12l2 2 4-4.5"/></svg>
+        100 % Sororité
+      </div>
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar">
+            <span>09:41</span>
+            <span class="sic">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="14" width="3" height="6" rx="1"/><rect x="8" y="10" width="3" height="10" rx="1"/><rect x="14" y="6" width="3" height="14" rx="1"/><rect x="20" y="3" width="3" height="17" rx="1" transform="translate(-1 0)"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10a12 12 0 0 1 16 0M7.5 13.5a7 7 0 0 1 9 0M11 17a2.5 2.5 0 0 1 2 0"/><circle cx="12" cy="19.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="15" height="9" rx="2.5"/><rect x="5.5" y="10.5" width="9" height="4" rx="1" fill="currentColor" stroke="none"/><path d="M20.5 11v3" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="appbody">
+            <div class="apphead">
+              <div>
+                <span class="geo">Avignon, Provence</span>
+                <h4>Ateliers du week-end</h4>
+              </div>
+              <span class="searchic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+            </div>
+            <div class="mini tall">
+              <div class="ph">
+                <img src="assets/evt-pilates.jpg" alt="Séance de Pilates en plein air suivie d'un brunch entre femmes">
+                <span class="etag">Pilates &amp; Brunch</span>
+                <span class="price">35 €</span>
+              </div>
+              <div class="bd">
+                <div class="t1"><b>Pilates &amp; brunch entre filles</b></div>
+                <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Avignon • Samedi 10h30</span></div>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="ph">
+                <img src="assets/evt-ceramique.jpg" alt="Atelier céramique entre femmes dans un atelier lumineux">
+                <span class="etag">Céramique &amp; Apéro</span>
+                <span class="price">55 €</span>
+              </div>
+              <div class="bd">
+                <div class="t1"><b>Atelier céramique &amp; apéro</b></div>
+                <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Saint-Rémy-de-Provence • Vendredi 18h30</span></div>
+              </div>
+            </div>
+            <div class="dock">
+              <svg class="on" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M13 6v2M13 11v2M13 16v2" stroke-dasharray="1 3"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSITION ================= -->
+<section class="transition">
+  <div class="wrap">
+    <p class="k">Explore. Rencontre. Connecte.</p>
+    <p class="v">Soyez parmi les premières à découvrir et réserver les événements sur FameConnect.</p>
+  </div>
+</section>
+
+<!-- ================= CONCEPT ================= -->
+<section class="concept" id="le-concept">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Vos envies. Vos expériences. Votre bulle.</h2>
+    <p class="lead">Avec FameConnect découvrez, réservez, créez et partagez des activités et expériences près de chez vous. Des professionnelles aux événements imaginés par vous, la communauté&nbsp;!</p>
+    <div class="cols3">
+      <div class="col">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+        <h3>Découvrez</h3>
+        <p>Explorez des activités et expériences près de chez vous selon vos envies et vos centres d'intérêt.</p>
+      </div>
+      <div class="col">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Réservez</h3>
+        <p>Réservez votre place en quelques clics grâce à un parcours fluide, un paiement sécurisé et une confirmation rapide. Tout est pensé pour vous simplifier la vie.</p>
+      </div>
+      <div class="col">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <h3>Créez</h3>
+        <p>Une envie, une passion ou une idée de sortie&nbsp;? Créez votre propre activité et invitez d'autres femmes à vous rejoindre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÉVÉNEMENTS ================= -->
+<section class="events" id="evenements">
+  <div class="wrap">
+    <div class="events-head">
+      <div>
+        <div class="rule"></div>
+        <h2>Trouvez votre bulle parmi les expériences</h2>
+        <p class="lead">Sportives, créatives ou premium&nbsp;: sur FameConnect, chaque femme trouve des activités près de chez elle, dans un cadre 100 % sororité. Un aperçu de ce qui vous attend dans l'application.</p>
+      </div>
+    </div>
+    <div class="ev-grid">
+      <!-- 1. Pilates & brunch -->
+      <article class="ev">
+        <div class="ph">
+          <img src="assets/evt-pilates.jpg" alt="Femmes pendant une séance de Pilates en terrasse, table de brunch conviviale à côté" loading="lazy">
+          <span class="etag">Sport &amp; Brunch</span>
+          <span class="price">35 €</span>
+        </div>
+        <div class="bd">
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Avignon</span></div>
+          <h3>Pilates &amp; brunch entre filles</h3>
+          <p class="ds">Une séance de Pilates suivie d'un brunch convivial pour rencontrer d'autres femmes.</p>
+          <div class="ft">
+            <span class="soon">Bientôt sur l'app</span>
+            <a class="go" href="#liste">Je m'inscris<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <!-- 2. Céramique & apéro -->
+      <article class="ev">
+        <div class="ph">
+          <img src="assets/evt-ceramique.jpg" alt="Trois femmes souriantes façonnant la céramique dans un atelier lumineux" loading="lazy">
+          <span class="etag">Créativité &amp; Apéro</span>
+          <span class="price">55 €</span>
+        </div>
+        <div class="bd">
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Saint-Rémy-de-Provence</span></div>
+          <h3>Atelier céramique &amp; apéro</h3>
+          <p class="ds">Un atelier créatif pour réaliser sa propre pièce en céramique et partager un moment convivial.</p>
+          <div class="ft">
+            <span class="soon">Bientôt sur l'app</span>
+            <a class="go" href="#liste">Je m'inscris<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+      <!-- 3. Parenthèse en Provence -->
+      <article class="ev">
+        <div class="ph">
+          <img src="assets/evt-provence.jpg" alt="Parenthèse bien-être dans un cocon tamisé, bougies et plaids en lin" loading="lazy">
+          <span class="etag">Parenthèse Premium</span>
+          <span class="price">130 €</span>
+        </div>
+        <div class="bd">
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>Gordes</span></div>
+          <h3>Parenthèse en Provence&nbsp;: journée d'exception</h3>
+          <p class="ds">Une expérience premium dans un lieu de charme, comprenant une activité, un déjeuner et des moments de partage entre femmes.</p>
+          <div class="ft">
+            <span class="soon">Bientôt sur l'app</span>
+            <a class="go" href="#liste">Je m'inscris<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="disclaimer">Exemples illustratifs des expériences qui seront proposées sur l'application FameConnect.</p>
+  </div>
+</section>
+
+<!-- ================= CRÉER ================= -->
+<section class="create" id="creer">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Et si vous créez la prochaine expérience ?</h2>
+    <p class="lead">Vous êtes professionnelle — coach, professeure de yoga ou de pilates, animatrice d'ateliers, thérapeute, guide — et vous voulez proposer vos activités à un public qui vous ressemble ? FameConnect vous donne la visibilité, la réservation et le suivi des inscriptions, sans charge mentale.</p>
+    <div class="chips">
+      <div class="chip">Yoga &amp; pilates</div>
+      <div class="chip">Ateliers créatifs</div>
+      <div class="chip">Bien-être &amp; soins</div>
+      <div class="chip">Coaching &amp; business</div>
+      <div class="chip">Gastronomie</div>
+    </div>
+    <p class="note">Vous proposez déjà des expériences ? Dites-nous lesquelles, nous vous recontactons pour la mise en ligne.</p>
+    <a class="btn btn-dark" href="#liste">Proposer mon activité</a>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section class="problem">
+  <div class="wrap problem-in">
+    <div>
+      <div class="rule"></div>
+      <h2>Parce que les belles expériences ne devraient pas rester introuvables.</h2>
+    </div>
+    <div>
+      <div class="pains">
+        <div class="pain"><span class="x">✕</span><p>Trop d'offres dispersées sur des dizaines de plateformes et réseaux différents.</p></div>
+        <div class="pain"><span class="x">✕</span><p>Trop de temps passé à chercher, comparer, hésiter — sans jamais réserver.</p></div>
+        <div class="pain"><span class="x">✕</span><p>Trop peu d'espaces pensés pour se retrouver entre femmes autour de passions communes.</p></div>
+      </div>
+      <p class="close-line">FameConnect rend les expériences visibles, accessibles et réservables, tout en créant du lien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROFESSIONNELLES ================= -->
+<section class="profile" id="professionnelles">
+  <div class="wrap profile-in">
+    <div class="profile-media">
+      <img src="assets/pro-animatrice.jpg" alt="Professionnelle animant un atelier" loading="lazy">
+    </div>
+    <div>
+      <span class="eyebrow">Je suis professionnelle</span>
+      <h2>Faites vivre vos expériences. Pas votre charge mentale.</h2>
+      <div class="ticks">
+        <div class="tick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#6E1728" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" fill="none" stroke="#6E1728" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soyez visible auprès des bonnes participantes.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#6E1728" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" fill="none" stroke="#6E1728" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Rendez vos expériences réservables en quelques clics.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#6E1728" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" fill="none" stroke="#6E1728" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Centralisez inscriptions, participantes et paiements.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#6E1728" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" fill="none" stroke="#6E1728" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gagnez du temps pour vous concentrer sur ce que vous aimez transmettre.</span></div>
+      </div>
+      <a class="btn btn-rose" href="#liste">Je veux proposer une expérience</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARTICIPANTES ================= -->
+<section class="profile alt rev" id="participantes">
+  <div class="wrap profile-in">
+    <div class="profile-media">
+      <img src="assets/img-13.jpg" alt="Groupe de femmes réunies autour d'une expérience" loading="lazy">
+    </div>
+    <div>
+      <span class="eyebrow">Je suis participante</span>
+      <h2>Participez, rencontrez, créez.</h2>
+      <div class="ticks">
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20z" fill="none" stroke="#6E1728" stroke-width="1.6"/></svg><span>Découvrez des expériences qui vous ressemblent.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20z" fill="none" stroke="#6E1728" stroke-width="1.6"/></svg><span>Réservez en quelques clics.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20z" fill="none" stroke="#6E1728" stroke-width="1.6"/></svg><span>Créez votre propre événement.</span></div>
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20z" fill="none" stroke="#6E1728" stroke-width="1.6"/></svg><span>Rassemblez des femmes autour de vos envies.</span></div>
+      </div>
+      <a class="btn btn-ghost" href="#liste">Créer un événement</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPÉRIENCES ================= -->
+<section class="cats" id="experiences">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Une envie aujourd'hui ? Il y a une expérience pour ça.</h2>
+    <p class="lead">Des expériences professionnelles ou imaginées par la communauté.</p>
+    <div class="grid9">
+      <div class="cat"><img src="assets/img-04.jpg" alt="Sport &amp; mouvement" loading="lazy"><span>Sport &amp; mouvement</span></div>
+      <div class="cat"><img src="assets/img-07.jpg" alt="Bien-être" loading="lazy"><span>Bien-être</span></div>
+      <div class="cat"><img src="assets/evt-provence.jpg" alt="Santé" loading="lazy"><span>Santé</span></div>
+      <div class="cat"><img src="assets/img-02.jpg" alt="Créativité" loading="lazy"><span>Créativité</span></div>
+      <div class="cat"><img src="assets/culture.jpg" alt="Culture" loading="lazy"><span>Culture</span></div>
+      <div class="cat"><img src="assets/gastronomie.jpg" alt="Gastronomie" loading="lazy"><span>Gastronomie</span></div>
+      <div class="cat"><img src="assets/img-06.jpg" alt="Business" loading="lazy"><span>Business</span></div>
+      <div class="cat"><img src="assets/voyages.jpg" alt="Voyages &amp; retraites" loading="lazy"><span>Voyages &amp; retraites</span></div>
+      <div class="cat"><img src="assets/img-08.jpg" alt="Ateliers &amp; rencontres" loading="lazy"><span>Ateliers &amp; rencontres</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANDE BORDEAUX ================= -->
+<section class="band">
+  <div class="wrap">
+    <h2>FameConnect arrive bientôt.</h2>
+    <p class="lead">L'application mobile est en cours de développement. Inscrivez-vous dès maintenant pour faire partie des premières utilisatrices, découvrir l'app dès son lancement et rejoindre votre bulle avant tout le monde.</p>
+    <a class="btn btn-cream" href="#liste">S'inscrire en avant-première</a>
+    <div class="band-items">
+      <div><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4z"/></svg>Accès prioritaire</div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg>Premières expériences</div>
+      <div><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Nouvelles de lancement, sans bruit inutile</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULAIRE ================= -->
+<section class="form-sec" id="liste">
+  <div class="wrap">
+    <div class="rule" style="margin:0 auto 26px"></div>
+    <h2>Entrez dans la bulle</h2>
+    <p class="lead">Laissez vos coordonnées pour être parmi les premières à découvrir FameConnect : vous serez informée en avant-première dès que l'application sera disponible.</p>
+    <form id="fc-form" novalidate>
+      <div class="fgrid">
+        <div class="field">
+          <label for="prenom">Prénom</label>
+          <input id="prenom" name="prenom" type="text" placeholder="Votre prénom" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="tel">Téléphone</label>
+          <input id="tel" name="tel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="ville">Ville</label>
+          <input id="ville" name="ville" type="text" placeholder="Votre ville" autocomplete="address-level2">
+          <div class="hint">Le lancement commence en PACA.</div>
+        </div>
+        <div class="field">
+          <label for="email">Adresse email</label>
+          <input id="email" name="email" type="email" placeholder="votre@email.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="insta">Instagram (facultatif)</label>
+          <input id="insta" name="insta" type="text" placeholder="@votrecompte">
+        </div>
+        <div class="field" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label for="site">Ne pas remplir</label>
+          <input id="site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="role">Vous êtes…</label>
+          <select id="role" name="role">
+            <option value="">Choisir…</option>
+            <option>Participante</option>
+            <option>Professionnelle</option>
+            <option>Les deux</option>
+            <option>Curieuse</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-rose form-btn" type="submit">Rejoindre la liste d'attente</button>
+      <p class="form-note">Pas de spam. Juste les nouvelles importantes du lancement.</p>
+      <p id="fc-msg" role="status" aria-live="polite" style="margin-top:16px;font-size:14px;text-align:center;display:none"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final">
+  <div class="wrap">
+    <h2>Votre prochaine expérience commence peut-être ici.</h2>
+    <div class="btns">
+      <a class="btn btn-rose" href="#liste">Rejoindre FameConnect</a>
+      <a class="btn btn-ghost" href="#creer">Créer mon premier événement</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RÉSEAUX / QR ================= -->
+<section class="social" id="instagram">
+  <div class="wrap">
+    <h2>Suivez l'aventure FameConnect</h2>
+    <p>Scannez le QR code pour nous rejoindre sur Instagram.</p>
+    <div class="qrbox">
+      <img src="assets/qr-instagram.png" alt="QR code Instagram FameConnect" loading="lazy">
+      <a class="handle" href="https://www.instagram.com/fameconnect__" target="_blank" rel="noopener">@fameconnect__</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="fbrand"><img src="assets/logo-fameco.png" alt="Logo FameConnect">FameConnect</div>
+        <p style="margin-top:14px;font-size:14px;color:var(--ink-soft);max-width:34ch;line-height:1.6">Votre bulle de rencontres et d'expériences. Des femmes qui osent.</p>
+      </div>
+      <div class="fcol">
+        <h4>Explorer</h4>
+        <a href="#le-concept">Le concept</a>
+        <a href="#evenements">Événements</a>
+        <a href="#experiences">Expériences</a>
+        <a href="#creer">Créer un événement</a>
+      </div>
+      <div class="fcol">
+        <h4>FameConnect</h4>
+        <a href="#professionnelles">Professionnelles</a>
+        <a href="#participantes">Participantes</a>
+        <a href="#liste">Liste d'attente</a>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <a href="mailto:contact@fameconnect.fr">contact@fameconnect.fr</a>
+        <a href="https://www.instagram.com/fameconnect__" target="_blank" rel="noopener">@fameconnect__</a>
+        <p>Lancement en PACA</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 FameConnect — Tous droits réservés.</span>
+      <span>Mentions légales · Confidentialité · CGU</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('fc-form');
+  if (!form) return;
+  var btn = form.querySelector('.form-btn');
+  var msg = document.getElementById('fc-msg');
+  var idle = btn.textContent;
+
+  function show(type, text){
+    msg.style.display = 'block';
+    msg.textContent = text;
+    if (type === 'ok') {
+      msg.style.color = '#426447';
+      msg.style.fontWeight = '600';
+    } else {
+      msg.style.color = '#8C1D2F';
+      msg.style.fontWeight = '600';
+    }
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var prenom = form.prenom.value.trim();
+    var email  = form.email.value.trim();
+
+    // Validation locale : on garde les données saisies
+    if (!prenom || !email) {
+      show('err', 'Merci de renseigner votre prénom et votre adresse email.');
+      (!prenom ? form.prenom : form.email).focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      show('err', "Cette adresse email ne semble pas valide. Vérifiez-la et réessayez.");
+      form.email.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    msg.style.display = 'none';
+
+    fetch('send.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        prenom: prenom,
+        email:  email,
+        tel:    form.tel.value.trim(),
+        ville:  form.ville.value.trim(),
+        insta:  form.insta.value.trim(),
+        role:   form.role.value,
+        site:   form.site.value
+      })
+    })
+    .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+    .then(function(d){
+      if (d && d.ok) {
+        // succès : on vide tous les champs
+        form.reset();
+        btn.textContent = 'Merci ! Vous êtes sur la liste ✨';
+        btn.style.background = '#426447';
+        btn.style.color = '#fff';
+        show('ok', "C'est noté. Nous vous écrivons dès que FameConnect arrive dans votre ville.");
+        btn.disabled = false;
+        setTimeout(function(){
+          btn.textContent = idle;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 6000);
+      } else {
+        // échec : on CONSERVE les informations saisies
+        btn.disabled = false;
+        btn.textContent = idle;
+        show('err', (d && d.error) ? d.error : "L'envoi a échoué. Réessayez dans un instant.");
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = idle;
+      show('err', 'Connexion impossible. Vérifiez votre réseau et réessayez.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
