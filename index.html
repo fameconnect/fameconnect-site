@@ -402,6 +402,22 @@
     .band .btn-cream:hover{background:#fff}
     .foot .fcol a:hover{color:var(--wine)}
   }
+
+/* ---- bandeau de caution French Tech ---- */
+.trust{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
+.trust-in{display:flex;align-items:center;justify-content:center;gap:26px;flex-wrap:wrap}
+.trust-label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.trust img{height:46px;width:auto;display:block}
+.trust-sep{width:1px;height:34px;background:var(--line)}
+.trust-txt{display:flex;flex-direction:column;gap:3px;line-height:1.2}
+@media (max-width:560px){
+  .trust{padding:18px 0}
+  .trust-in{gap:12px}
+  .trust img{height:46px;width:auto;display:block}
+  .trust-sep{display:none}
+  .trust-txt{display:flex;flex-direction:column;gap:3px;line-height:1.2}
+}
+.trust strong{font-size:14.5px;font-weight:600;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -490,6 +506,17 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAUTION FRENCH TECH ================= -->
+<section class="trust" aria-label="Soutien de la French Tech Grande Provence">
+  <div class="wrap trust-in">
+    <img src="assets/frenchtech-coq.png" alt="La French Tech">
+    <div class="trust-txt">
+      <span class="trust-label">Soutenue par</span>
+      <strong>La French Tech Grande Provence</strong>
     </div>
   </div>
 </section>
@@ -601,6 +628,13 @@
     <div class="rule"></div>
     <h2>Et si vous créez la prochaine expérience ?</h2>
     <p class="lead">Vous êtes professionnelle — coach, professeure de yoga ou de pilates, animatrice d'ateliers, thérapeute, guide — et vous voulez proposer vos activités à un public qui vous ressemble ? FameConnect vous donne la visibilité, la réservation et le suivi des inscriptions, sans charge mentale.</p>
+    <div class="chips">
+      <div class="chip">Yoga &amp; pilates</div>
+      <div class="chip">Ateliers créatifs</div>
+      <div class="chip">Bien-être &amp; soins</div>
+      <div class="chip">Coaching &amp; business</div>
+      <div class="chip">Gastronomie</div>
+    </div>
     <p class="note">Vous proposez déjà des expériences ? Dites-nous lesquelles, nous vous recontactons pour la mise en ligne.</p>
     <a class="btn btn-dark" href="#liste">Proposer mon activité</a>
   </div>
@@ -892,7 +926,5 @@
   });
 })();
 </script>
-<!-- Cloudflare Web Analytics (mesure sans cookie, sans banniere) -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c48b0cec7fca4a39809e6a2407469bad"}'></script>
 </body>
 </html>
