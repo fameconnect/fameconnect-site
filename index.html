@@ -903,7 +903,7 @@
     var ctrl = new AbortController();
     var timer = setTimeout(function(){ ctrl.abort(); }, 8000);
 
-    fetch('https://formsubmit.co/ajax/hellofameconnect@gmail.com', {
+    fetch('https://fameconnect-form.hellofameconnect.workers.dev', {
       signal: ctrl.signal,
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -921,7 +921,7 @@
     })
     .then(function(r){ clearTimeout(timer); return r.json().catch(function(){ return {}; }); })
     .then(function(d){
-      var ok = d && (d.success === 'true' || d.success === true);
+      var ok = d && (d.ok === true || d.success === 'true' || d.success === true);
       if (ok) {
         // succès : on vide tous les champs
         form.reset();
