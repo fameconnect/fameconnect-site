@@ -900,7 +900,11 @@
     btn.textContent = 'Envoi en cours…';
     msg.style.display = 'none';
 
+    var ctrl = new AbortController();
+    var timer = setTimeout(function(){ ctrl.abort(); }, 8000);
+
     fetch('https://formsubmit.co/ajax/hellofameconnect@gmail.com', {
+      signal: ctrl.signal,
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
@@ -915,7 +919,7 @@
         'Profil':    form.role.value || '-'
       })
     })
-    .then(function(r){ return r.json().catch(function(){ return {}; }); })
+    .then(function(r){ clearTimeout(timer); return r.json().catch(function(){ return {}; }); })
     .then(function(d){
       var ok = d && (d.success === 'true' || d.success === true);
       if (ok) {
@@ -950,9 +954,21 @@
       }
     })
     .catch(function(){
+      clearTimeout(timer);
       btn.disabled = false;
       btn.textContent = idle;
-      show('err', 'Connexion impossible. Vérifiez votre réseau et réessayez.');
+      var corps2 = 'Prenom: ' + prenom + '\nEmail: ' + email +
+                   '\nTelephone: ' + (form.tel.value.trim() || '-') +
+                   '\nVille: ' + (form.ville.value.trim() || '-') +
+                   '\nInstagram: ' + (form.insta.value.trim() || '-') +
+                   '\nProfil: ' + (form.role.value || '-');
+      msg.style.display = 'block';
+      msg.style.color = '#8C1D2F';
+      msg.style.fontWeight = '600';
+      msg.innerHTML = "L'envoi automatique est momentanément indisponible. " +
+        '<a href="mailto:contact@fameconnect.fr?subject=' + encodeURIComponent('Inscription FameConnect') +
+        '&body=' + encodeURIComponent(corps2) + '" style="color:#6E1728;text-decoration:underline">' +
+        'Cliquez ici pour nous écrire directement</a> — vos informations sont déjà prêtes.';
     });
   });
 })();
