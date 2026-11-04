@@ -900,22 +900,25 @@
     btn.textContent = 'Envoi en cours…';
     msg.style.display = 'none';
 
-    fetch('send.php', {
+    fetch('https://formsubmit.co/ajax/hellofameconnect@gmail.com', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
-        prenom: prenom,
-        email:  email,
-        tel:    form.tel.value.trim(),
-        ville:  form.ville.value.trim(),
-        insta:  form.insta.value.trim(),
-        role:   form.role.value,
-        site:   form.site.value
+        _subject:    'FameConnect — nouvelle inscription',
+        _template:   'table',
+        _captcha:    'false',
+        'Prenom':    prenom,
+        'Email':     email,
+        'Telephone': form.tel.value.trim() || '-',
+        'Ville':     form.ville.value.trim() || '-',
+        'Instagram': form.insta.value.trim() || '-',
+        'Profil':    form.role.value || '-'
       })
     })
-    .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+    .then(function(r){ return r.json().catch(function(){ return {}; }); })
     .then(function(d){
-      if (d && d.ok) {
+      var ok = d && (d.success === 'true' || d.success === true);
+      if (ok) {
         // succès : on vide tous les champs
         form.reset();
         btn.textContent = 'Merci ! Vous êtes sur la liste ✨';
@@ -932,7 +935,7 @@
         // échec : on CONSERVE les informations saisies
         btn.disabled = false;
         btn.textContent = idle;
-        show('err', (d && d.error) ? d.error : "L'envoi a échoué. Réessayez dans un instant.");
+        show('err', (d && d.message) ? d.message : "L'envoi a échoué. Réessayez dans un instant.");
       }
     })
     .catch(function(){
