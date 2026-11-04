@@ -935,7 +935,18 @@
         // échec : on CONSERVE les informations saisies
         btn.disabled = false;
         btn.textContent = idle;
-        show('err', (d && d.message) ? d.message : "L'envoi a échoué. Réessayez dans un instant.");
+        var corps = 'Prenom: ' + prenom + '\nEmail: ' + email +
+                    '\nTelephone: ' + (form.tel.value.trim() || '-') +
+                    '\nVille: ' + (form.ville.value.trim() || '-') +
+                    '\nInstagram: ' + (form.insta.value.trim() || '-') +
+                    '\nProfil: ' + (form.role.value || '-');
+        msg.style.display = 'block';
+        msg.style.color = '#8C1D2F';
+        msg.style.fontWeight = '600';
+        msg.innerHTML = "L'envoi automatique est momentanément indisponible. " +
+          '<a href="mailto:contact@fameconnect.fr?subject=' + encodeURIComponent('Inscription FameConnect') +
+          '&body=' + encodeURIComponent(corps) + '" style="color:#6E1728;text-decoration:underline">' +
+          'Cliquez ici pour nous écrire directement</a> — vos informations sont déjà prêtes.';
       }
     })
     .catch(function(){
