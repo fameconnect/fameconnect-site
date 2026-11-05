@@ -98,14 +98,17 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:#8A6
 </footer>
 
 <script>
-window.fcLoadGTM=window.fcLoadGTM||function(){
-  if(window.__fcGtm)return; window.__fcGtm=1;
-  window.dataLayer=window.dataLayer||[];
-  window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-  var s=document.createElement('script'); s.async=true;
-  s.src='https://www.googletagmanager.com/gtm.js?id=GTM-M2M9W8BN';
-  document.head.appendChild(s);
-};
+window.fcLoadGTM=function(){
+    if(window.__fcAnalytics)return; window.__fcAnalytics=1;
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-SP2KZL0XRB';
+    document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag=gtag;
+    gtag('js', new Date());
+    gtag('config','G-SP2KZL0XRB',{'anonymize_ip':true});
+  };
 function etat(){
   var c=null; try{c=localStorage.getItem('fc_consent')}catch(e){}
   document.getElementById('statut').textContent = c==='granted' ? 'accepté' : (c==='denied' ? 'refusé' : 'aucun choix enregistré');

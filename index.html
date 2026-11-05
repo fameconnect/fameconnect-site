@@ -1048,12 +1048,15 @@
 (function(){
   var KEY='fc_consent';
   window.fcLoadGTM=function(){
-    if(window.__fcGtm)return; window.__fcGtm=1;
-    window.dataLayer=window.dataLayer||[];
-    window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    if(window.__fcAnalytics)return; window.__fcAnalytics=1;
     var s=document.createElement('script'); s.async=true;
-    s.src='https://www.googletagmanager.com/gtm.js?id=GTM-M2M9W8BN';
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-SP2KZL0XRB';
     document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag=gtag;
+    gtag('js', new Date());
+    gtag('config','G-SP2KZL0XRB',{'anonymize_ip':true});
   };
   window.fcSetConsent=function(v){
     try{localStorage.setItem(KEY,v)}catch(e){}
