@@ -891,6 +891,7 @@
       <div class="fcol">
         <h4>Contact</h4>
         <a href="mailto:contact@fameconnect.fr">contact@fameconnect.fr</a>
+      <a href="/confidentialite.html">Confidentialité &amp; cookies</a>
         <a href="https://www.instagram.com/fameconnect.app" target="_blank" rel="noopener">@fameconnect.app</a>
         <p>Lancement en PACA</p>
       </div>
@@ -1018,5 +1019,54 @@
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddd89e74ff604b16947d52107705f651"}'></script>
+
+<!-- Consentement cookies + Google Tag Manager -->
+<div id="fc-cookie" role="dialog" aria-live="polite" aria-label="Mesure d'audience">
+  <div class="fc-cookie-inner">
+    <p><strong>Mesure d'audience</strong><br>Nous utilisons un outil pour comprendre comment le site est utilisé, afin de l'améliorer. Vous pouvez accepter ou refuser.</p>
+    <div class="fc-cookie-btns">
+      <button type="button" class="fc-btn fc-accept" onclick="fcSetConsent('granted')">Accepter</button>
+      <button type="button" class="fc-btn fc-refuse" onclick="fcSetConsent('denied')">Refuser</button>
+      <a href="/confidentialite.html">En savoir plus</a>
+    </div>
+  </div>
+</div>
+<style>
+#fc-cookie{position:fixed;left:0;right:0;bottom:0;background:#F7F4ED;border-top:1px solid #E4DCD2;box-shadow:0 -8px 30px rgba(40,29,25,.10);z-index:9999;transform:translateY(120%);transition:transform .35s ease;font-family:inherit}
+#fc-cookie.show{transform:translateY(0)}
+.fc-cookie-inner{max-width:920px;margin:0 auto;padding:18px 24px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#fc-cookie p{margin:0;font-size:14px;line-height:1.5;color:#4A3B37;max-width:560px}
+#fc-cookie strong{color:#6E1728}
+.fc-cookie-btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.fc-btn{border:0;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.fc-accept{background:#6E1728;color:#F7F4ED}
+.fc-refuse{background:transparent;color:#6E1728;border:1px solid #6E1728}
+.fc-cookie-btns a{font-size:13px;color:#6E1728;text-underline-offset:3px}
+@media(max-width:620px){.fc-cookie-inner{padding:16px 18px;gap:14px}#fc-cookie p{font-size:13px}.fc-btn{padding:10px 18px;font-size:13px}}
+</style>
+<script>
+(function(){
+  var KEY='fc_consent';
+  window.fcLoadGTM=function(){
+    if(window.__fcGtm)return; window.__fcGtm=1;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtm.js?id=GTM-M2M9W8BN';
+    document.head.appendChild(s);
+  };
+  window.fcSetConsent=function(v){
+    try{localStorage.setItem(KEY,v)}catch(e){}
+    var el=document.getElementById('fc-cookie'); if(el) el.classList.remove('show');
+    if(v==='granted') window.fcLoadGTM();
+  };
+  var c=null; try{c=localStorage.getItem(KEY)}catch(e){}
+  if(c==='granted'){ window.fcLoadGTM(); }
+  else if(!c){ document.addEventListener('DOMContentLoaded',function(){
+    var el=document.getElementById('fc-cookie'); if(el) el.classList.add('show');
+  }); }
+})();
+</script>
+
 </body>
 </html>

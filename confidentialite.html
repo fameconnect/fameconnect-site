@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité et cookies | FameConnect</title>
+<meta name="description" content="Comment FameConnect traite vos données personnelles et utilise la mesure d'audience. Gérer votre consentement aux cookies.">
+<link rel="canonical" href="https://fameconnect.fr/confidentialite.html">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Confidentialité et cookies | FameConnect">
+<meta property="og:description" content="Comment FameConnect traite vos données personnelles et utilise la mesure d'audience.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fameconnect.fr/confidentialite.html">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="FameConnect">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#F7F4ED;--paper:#FEFDF9;--wine:#6E1728;--ink:#281D19;--body:#4A3B37;--line:#E4DCD2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--body);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.7;font-size:16px}
+header{border-bottom:1px solid var(--line);background:var(--paper)}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+header a{color:var(--wine);text-decoration:none;font-weight:600;font-size:14px}
+.logo{font-family:Georgia,"Times New Roman",serif;font-size:22px;color:var(--wine);text-decoration:none;letter-spacing:-.01em}
+main{padding:56px 0 72px}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.15;color:var(--wine);margin:0 0 10px}
+.updated{font-size:13px;color:#8A6A52;margin:0 0 40px}
+h2{font-size:19px;color:var(--ink);margin:38px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin-bottom:8px}
+a{color:var(--wine);text-underline-offset:3px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:26px 0}
+.btn{display:inline-block;border:0;border-radius:999px;padding:12px 24px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;margin:6px 8px 6px 0}
+.btn-wine{background:var(--wine);color:var(--ivory)}
+.btn-ghost{background:transparent;color:var(--wine);border:1px solid var(--wine)}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:#8A6A52}
+.status{font-size:14px;margin-top:10px;color:var(--ink)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/">FameConnect</a>
+    <a href="/">← Retour au site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Confidentialité et cookies</h1>
+  <p class="updated">Dernière mise à jour : 5 novembre 2026</p>
+
+  <h2>Qui traite vos données</h2>
+  <p>FameConnect, représenté par sa fondatrice. Pour toute question ou pour exercer vos droits :
+  <a href="mailto:contact@fameconnect.fr">contact@fameconnect.fr</a>.</p>
+
+  <h2>Quelles données nous collectons</h2>
+  <p>Uniquement ce que vous nous donnez volontairement dans le formulaire d'inscription à la liste d'attente :</p>
+  <ul>
+    <li>votre adresse email</li>
+    <li>votre prénom, si vous le renseignez</li>
+    <li>votre ville ou votre activité, si vous les renseignez</li>
+    <li>le fait que vous soyez participante ou professionnelle</li>
+  </ul>
+  <p>Nous ne collectons aucune donnée sensible et nous ne vendons ni ne louons vos données à personne.</p>
+
+  <h2>Pourquoi et combien de temps</h2>
+  <p>Ces informations servent à une seule chose : vous prévenir du lancement de FameConnect et vous donner un accès prioritaire. Elles sont conservées jusqu'au lancement, puis jusqu'à votre désinscription.</p>
+  <p>Vous pouvez demander la suppression de vos données à tout moment en écrivant à
+  <a href="mailto:contact@fameconnect.fr">contact@fameconnect.fr</a>. Nous répondons sous 30 jours.</p>
+
+  <h2>Mesure d'audience</h2>
+  <p>Avec votre accord, nous utilisons Google Analytics (via Google Tag Manager) pour comprendre comment le site est utilisé : pages consultées, temps passé, provenance des visites. Ces informations sont agrégées et ne permettent pas de vous identifier personnellement.</p>
+  <p>Si vous refusez, aucun cookie de mesure n'est déposé et votre navigation n'est pas suivie. Le site fonctionne exactement de la même manière.</p>
+  <p>En complément, Cloudflare mesure le nombre de visites de façon anonyme et sans cookie. Ce dispositif ne nécessite pas votre consentement.</p>
+
+  <h2>Gérer votre choix</h2>
+  <div class="box">
+    <p style="margin-bottom:14px"><strong>Votre choix actuel :</strong> <span id="statut" class="status">chargement…</span></p>
+    <button class="btn btn-wine" type="button" onclick="choix('granted')">Accepter la mesure d'audience</button>
+    <button class="btn btn-ghost" type="button" onclick="choix('denied')">Refuser</button>
+  </div>
+
+  <h2>Hébergement</h2>
+  <p>Le site est hébergé par GitHub Pages (GitHub, Inc., États-Unis) et protégé par Cloudflare. Ces prestataires traitent uniquement les données techniques nécessaires à l'affichage des pages.</p>
+
+  <h2>Vos droits</h2>
+  <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur vos données. Écrivez à
+  <a href="mailto:contact@fameconnect.fr">contact@fameconnect.fr</a>. Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL (cnil.fr).</p>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 FameConnect · <a href="/">fameconnect.fr</a></div>
+</footer>
+
+<script>
+window.fcLoadGTM=window.fcLoadGTM||function(){
+  if(window.__fcGtm)return; window.__fcGtm=1;
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+  var s=document.createElement('script'); s.async=true;
+  s.src='https://www.googletagmanager.com/gtm.js?id=GTM-M2M9W8BN';
+  document.head.appendChild(s);
+};
+function etat(){
+  var c=null; try{c=localStorage.getItem('fc_consent')}catch(e){}
+  document.getElementById('statut').textContent = c==='granted' ? 'accepté' : (c==='denied' ? 'refusé' : 'aucun choix enregistré');
+}
+function choix(v){
+  try{localStorage.setItem('fc_consent',v)}catch(e){}
+  etat();
+  if(v==='granted'){ window.fcLoadGTM(); }
+  if(v==='denied'){ location.reload(); }
+}
+etat();
+</script>
+</body>
+</html>
